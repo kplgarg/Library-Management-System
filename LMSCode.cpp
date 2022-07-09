@@ -466,7 +466,7 @@ void bookissue()
 						int pos = -1 * sizeof(st);
 						fp.seekg(pos, ios::cur);
 						fp.write((char *)&st, sizeof(student));
-						cout << "\n\n\tBook Issued Successfully\n\n Please Note The Book Issue Date On Backside Of Your Book And Return Book Within 15 Days, Otherwise Fine Of 15 Rs Per Day";
+						cout << "\n\n\tBook Issued Successfully\n\n Please Note The Book Issue Date On Backside Of Your Book And Return Book Within 15 Days, Otherwise Fine Of Rs 100 Per Day";
 					}
 				}
 				if (flag == 0)
@@ -518,7 +518,7 @@ void bookdeposit()
 						cin >> day;
 						if (day > 15)
 						{
-							fine = (day - 15) * 1;
+							fine = (day - 15) * 100;
 							cout << "\n\n Fine = " << fine;
 						}
 						st.resettoken();
