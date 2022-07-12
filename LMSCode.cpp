@@ -74,36 +74,36 @@ public:
     void createbook()
     {
         cout << "\nNEW BOOK ENTRY GOING ON...\n";
-        cout << "\nENTER BOOK NUMBER.";
+        cout << "\nENTER BOOK NUMBER : ";
         fflush(stdin);
         gets(bookNumber,bookNumberLength);
-        cout << "\nENTER BOOK NAME";
+        cout << "\nENTER BOOK NAME : ";
         fflush(stdin);
         gets(bookName, bookNameLength);
-        cout << "\nENTER AUTHOR NAME";
+        cout << "\nENTER AUTHOR NAME : ";
         fflush(stdin);
         gets(authorName, authorNameLength);
         Color(2);
-        cout << "\n\n\nBook Created..";
+        cout << "\n\n\nBOOK CREATED SUCCESSFULLY.";
         Color(7);
     }
     //showing book
     void showbook()
     {
-        cout << "\nBook Number: " << bookNumber;
-        cout << "\nBook Name: ";
+        cout << "\nBOOK NUMBER : " << bookNumber;
+        cout << "\nBOOK NAME : ";
         puts(bookName);
-        cout << "\nBook Author Name: ";
+        cout << "\nBOOK AUTHOR NAME : ";
         puts(authorName);
     }
     //modifying book
     void modifybook()
     {
-        cout << "\nBook Number: " << bookNumber;
-        cout << "\nModify Book Name :";
+        cout << "\nBOOK NUMBER : " << bookNumber;
+        cout << "\nMODIFY BOOK NAME : ";
         fflush(stdin);
         gets(bookName, bookNameLength);
-        cout << "\nModify Author's Name :";
+        cout << "\nMODIFY AUTHOR'S NAME : ";
         fflush(stdin);
         gets(authorName, authorNameLength);
     }
@@ -132,35 +132,35 @@ public:
     {
         system("cls");
         cout << "\n\nNEW STUDENT ENTRY IS GOING ...";
-        cout << "\n\nEnter The Admission Number";
+        cout << "\n\nENTER THE ADMISSION NUMBER : ";
         fflush(stdin);
         gets(admissionNumber,studentAdmissionNumberLength);
-        cout <<"\n\nEnter The Student Name";
+        cout <<"\n\nENTER THE STUDENT NAME : ";
         fflush(stdin);
         gets(name, studentNameLength);
         token = 0;
         studentBookNumber[0] = '\0';
         Color(2);
-        cout <<"\n\nStudent Record Created...";
+        cout <<"\n\nSTUDENT RECORD CREATED SUCCESSFULLY.";
         Color(7);
     }
     //showing student
     void showstudent()
     {
-        cout << "\nAdmission Number : " << admissionNumber;
-        cout << "\nStudent Name : ";
+        cout << "\nADMISSION NUMBER : " << admissionNumber;
+        cout << "\nSTUDENT NAME : ";
         puts(name);
-        cout << "\nNo of Book Issued : " << token;
+        cout << "\nNUMBER OF BOOK ISSUED : " << token;
         if (token == 1)
         {
-            cout << "\nBook Number " << studentBookNumber;
+            cout << "\nBOOK NUMBER : " << studentBookNumber;
         }
     }
     //modifying student
     void modifystudent()
     {
-        cout << "\nAdmission Number " << admissionNumber;
-        cout << "\nModify Student Name : ";
+        cout << "\nADMISSION NUMBER  : " << admissionNumber;
+        cout << "\nMODIFY STUDENT NAME : ";
         fflush(stdin);
         gets(name, studentNameLength);
     }
@@ -208,7 +208,9 @@ void writebook()
         system("cls");
         bk.createbook();
         fp.write((char *)&bk, sizeof(book)); // size of class
-        cout << "\n\nDo you want to add more record...(y/n?) ";
+        Color(3);
+        cout << "\n\nDO YOU WANT TO ADD MORE RECORD?(Y/N?) ";
+        Color(7);
         cin >> ch;
     }
     while (ch == 'y' || ch == 'Y');
@@ -224,7 +226,9 @@ void writestudent()
         system("cls");
         st.createstudent();
         fp.write((char *)&st, sizeof(student)); // size of class
-        cout << "\n\nDo you want to add more record...(y/n?) ";
+        Color(3);
+        cout << "\n\nDO YOU WANT TO ADD MORE RECORD?(Y/N?) ";
+        Color(7);
         cin >> ch;
     }
     while (ch == 'y' || ch == 'Y');
@@ -247,7 +251,7 @@ void displayspb(char n[])
     if (flag == 0) // book not found
     {
         Color(4);
-        cout << "\n\nBook does not exist";
+        cout << "\n\nBOOK DOES NOT EXIST.";
         Color(7);
     }
     getch();
@@ -269,7 +273,7 @@ void displaysps(char n[])
     if (flag == 0) // student not found
     {
         Color(4);
-        cout << "\n\nStudent does not exist";
+        cout << "\n\nSTUDENT DOES NOT EXIST.";
         Color(7);
     }
     getch();
@@ -279,8 +283,8 @@ void modifybook()
     char n[bookNumberLength];
     int found = 0;
     system("cls");
-    cout << "\n\nMODIFY BOOK RECORD...";
-    cout << "\n\nEnter the book no. ";
+    cout << "\n\nMODIFY BOOK RECORD.";
+    cout << "\n\nENTER THE BOOK NUMBER : ";
     fflush(stdin);
     gets(n,bookNumberLength);
     fp.open("book.txt", ios::in | ios::out);
@@ -289,13 +293,13 @@ void modifybook()
         if (strcmp(bk.returnBookNUmber(), n) == 0)
         {
             bk.showbook();
-            cout << "\nEnter the new details book";
+            cout << "\nENTER THE NEW DETAILS BOOK ";
             bk.modifybook();
             int pos = -1 * sizeof(bk);
             fp.seekp(pos, ios::cur); // back from current position
             fp.write((char *)&bk, sizeof(book));
             Color(2);
-            cout << "\n\nRecord Updated";
+            cout << "\n\nRECORD UPDATED";
             Color(7);
             found = 1;
         }
@@ -304,7 +308,7 @@ void modifybook()
     if (found == 0)
     {
         Color(4);
-        cout << "\n\nRecord Not Found";
+        cout << "\n\nRECORD NOT FOUND.";
         Color(7);
     }
     getch(); // press key to get out
@@ -314,8 +318,8 @@ void modifystudent()
     char n[studentAdmissionNumberLength];
     int found = 0; // seach book of given data
     system("cls");
-    cout << "\n\nMODIFY STUDENT RECORD...";
-    cout << "\n\nEnter the Admission no. ";
+    cout << "\n\nMODIFY STUDENT RECORD.";
+    cout << "\n\nEnter the Admission Number : ";
     fflush(stdin);
     gets(n,studentAdmissionNumberLength);
     fp.open("student.txt", ios::in | ios::out);
@@ -324,13 +328,13 @@ void modifystudent()
         if (strcmp(st.returnAdmissionNumber(), n) == 0)
         {
             st.showstudent();
-            cout << "\nEnter the new details of student";
+            cout << "\nENTER THE NEW DETAILS OF STUDENT";
             st.modifystudent();
             int pos = -1 * sizeof(st);
             fp.seekp(pos, ios::cur); // back from current position
             fp.write((char *)&st, sizeof(student));
             Color(2);
-            cout << "\n\nRecord Updated";
+            cout << "\n\nRECORD UPDATED.";
             Color(7);
             found = 1;
         }
@@ -339,7 +343,7 @@ void modifystudent()
     if (found == 0)
     {
         Color(4);
-        cout << "\n\nRecord Not Found";
+        cout << "\n\nRECORD NOT FOUND.";
         Color(7);
     }
     getch(); // press key to get out
@@ -350,8 +354,8 @@ void deletestudent()
     char n[studentAdmissionNumberLength];
     int flag = 0;
     system("cls");
-    cout << "\n\n\n\tDELETE STUDENT...";
-    cout << "\n\nEnter the Admission no> : ";
+    cout << "\n\n\n\tDELETE STUDENT.";
+    cout << "\n\nENTER THE ADMISSION NUMBER : ";
     fflush(stdin);
     gets(n,studentAdmissionNumberLength);
     fp.open("student.txt", ios::in | ios::out);
@@ -376,13 +380,13 @@ void deletestudent()
     if (flag == 1)
     {
         Color(2);
-        cout << "\n\n\tRecord Deleted..";
+        cout << "\n\n\tRECORD DELETED SUCCESSFULLY.";
         Color(7);
     }
     else
     {
         Color(4);
-        cout << "\n\nRecord not Found";
+        cout << "\n\nRECORD NOT FOUND.";
         Color(7);
     }
     getch();
@@ -392,8 +396,8 @@ void deletebook()
     char n[bookNumberLength]; // book no.
     int flag = 0;
     system("cls");
-    cout << "\n\n\n\tDELETE BOOK...";
-    cout << "\n\nEnter the Book no> : ";
+    cout << "\n\n\n\tDELETE BOOK.";
+    cout << "\n\nENTER THE BOOK NUMBER : ";
     fflush(stdin);
     gets(n,bookNumberLength);
     fp.open("book.txt", ios::in | ios::out);
@@ -418,13 +422,13 @@ void deletebook()
     if (flag == 1)
     {
         Color(2);
-        cout << "\n\n\tRecord Deleted... ";
+        cout << "\n\n\tRECORD DELETED SUCCESSFULLY.";
         Color(7);
     }
     else
     {
         Color(4);
-        cout << "\n\nRecord not Found";
+        cout << "\n\nRECORD NOT FOUND.";
         Color(7);
     }
     getch();
@@ -436,7 +440,7 @@ void displayalls()
     if (!fp)
     {
         Color(4);
-        cout << "File Could Not Be Open";
+        cout << "FILE COULD NOT BE OPEN.";
         Color(7);
         getch();
         return; // press any key and return
@@ -445,9 +449,9 @@ void displayalls()
     cout << "\n\n";
     gotoxy(92,2);
     Color(6);
-    cout<<"Student List\n\n";
+    cout<<"STUDENT LIST\n\n";
     cout << "==================================================================================================================================================================================================================\n";
-    cout << "\tAdmission No." << setw(80) << "Name" << setw(80) << "Book Issued\n";
+    cout << "\tADMISSION NUMBER" << setw(80) << "NAME" << setw(80) << "BOOK ISSUED\n";
     cout << "==================================================================================================================================================================================================================\n";
     Color(7);
     while (fp.read((char *)&st, sizeof(student)))
@@ -464,7 +468,7 @@ void displayallb()
     if (!fp)
     {
         Color(4);
-        cout << "File Could Not Be Open";
+        cout << "FILE COULD NOT BE OPEN.";
         Color(7);
         getch();
         return; // press any key and return
@@ -474,7 +478,7 @@ void displayallb()
     Color(6);
     cout<<"Book List\n\n";
     cout << "==================================================================================================================================================================================================================\n";
-    cout << "\tBook No." << setw(80) << "Book Name" << setw(80) << "Book Author\n";
+    cout << "\tBOOK NUMBER" << setw(80) << "BOOK NAME" << setw(80) << "BOOK AUTHOR\n";
     cout << "==================================================================================================================================================================================================================\n";
     Color(7);
     while (fp.read((char *)&bk, sizeof(book)))
@@ -490,7 +494,7 @@ void bookissue()
     int found = 0, flag = 0;
     system("cls");
     cout << "\n\nBOOK ISSUE...";
-    cout << "\n\n\tEnter Admission no.";
+    cout << "\n\n\tENTER ADMISSION NUMBER : ";
     cin >> sn;
     fp.open("student.txt", ios::in | ios::out);
     fp1.open("book.txt", ios::in | ios::out);
@@ -501,7 +505,7 @@ void bookissue()
             found = 1;
             if (st.returnToken() == 0) // if book not issued
             {
-                cout << "\n\n\tEnter The Book No.";
+                cout << "\n\n\tENTER THE BOOK NUMBER : ";
                 cin >> bn;
                 while (fp1.read((char *)&bk, sizeof(book)) && flag == 0)
                 {
@@ -514,14 +518,14 @@ void bookissue()
                         fp.seekg(pos, ios::cur);
                         fp.write((char *)&st, sizeof(student));
                         Color(2);
-                        cout << "\n\n\tBook Issued Successfully\n\n Please Note The Book Issue Date On Backside Of Your Book And Return Book Within 15 Days, Otherwise Fine Of Rs 100 Per Day";
+                        cout << "\n\n\tBOOK ISSUED SUCCESSFULLY.\n\n Please Note The Book Issue Date On Backside Of Your Book And Return Book Within 15 Days, Otherwise Fine Of Rs 100 Per Day";
                         Color(7);
                     }
                 }
                 if (flag == 0)
                 {
                     Color(4);
-                    cout << "Book No. Does Not Exists";
+                    cout << "BOOK NUMBER DOES NOT EXISTS.";
                     Color(7);
                 }
             }
@@ -529,7 +533,7 @@ void bookissue()
             else
             {
                 Color(4);
-                cout << "You Have Not Returned The Last Book";
+                cout << "YOU HAVE NOT RETURNED THE LAST BOOK.";
                 Color(7);
             }
         }
@@ -537,7 +541,7 @@ void bookissue()
     if (found == 0)
     {
         Color(4);
-        cout << "Student Record Not Exists...";
+        cout << "STUDENT RECORD NOT EXISTS.";
         Color(7);
     }
     getch();
@@ -550,8 +554,8 @@ void bookdeposit()
     char sn[studentAdmissionNumberLength], bn[bookNumberLength];
     int found = 0, flag = 0, day, fine;
     system("cls");
-    cout << "\n\nBOOK DEPOSIT...";
-    cout << "\n\n\tEnter Admission no. Of Student";
+    cout << "\n\nBOOK DEPOSIT.";
+    cout << "\n\n\tENTER ADMISSION NUMBER OF STUDENT : ";
     cin >> sn;
     fp.open("student.txt", ios::in | ios::out);
     fp1.open("book.txt", ios::in | ios::out);
@@ -568,12 +572,12 @@ void bookdeposit()
                     {
                         flag = 1;
                         bk.showbook();
-                        cout << "\n\n Book Deposited In No. Of Days";
+                        cout << "\n\nBOOK DEPOSITED IN NUMBER OF DAYS : ";
                         cin >> day;
                         if (day > 15)
                         {
                             fine = (day - 15) * 100;
-                            cout << "\n\n Fine = " << fine;
+                            cout << "\n\n FINE = " << fine;
                         }
                         st.resettoken();
 
@@ -581,14 +585,14 @@ void bookdeposit()
                         fp.seekg(pos, ios::cur);
                         fp.write((char *)&st, sizeof(student));
                         Color(2);
-                        cout << "\n\n\tBook Deposited Successfully";
+                        cout << "\n\n\tBOOK DEPOSITED SUCCESSFULLY.";
                         Color(7);
                     }
                 }
                 if (flag == 0)
                 {
                     Color(4);
-                    cout << "Book No. Does Not Exists";
+                    cout << "BOOK NUMBER DOES NOT EXISTS";
                     Color(7);
                 }
             }
@@ -596,14 +600,14 @@ void bookdeposit()
             else
             {
                 Color(4);
-                cout << "No Book Issued";
+                cout << "NO BOOK ISSUED";
                 Color(7);
             }
         }
     }
     if (found == 0)
     {
-        cout << "Student Record Not Exists...";
+        cout << "STUDENT RECORD NOT EXISTS.";
     }
     getch();
     fp.close();
@@ -626,6 +630,7 @@ void adminmenu()
 {
     system("cls");
     int ch2;
+    Color(11);
     cout << "\n\n\n\tADMINISTRATOR MENU";
     cout << "\n\n\n\t1.CREATE STUDENT RECORD";
     cout << "\n\n\n\t2.DISPLAY ALL STUDENT RECORD";
@@ -639,6 +644,7 @@ void adminmenu()
     cout << "\n\n\n\t10.DELETE BOOK RECORD";
     cout << "\n\n\n\t11.BACK TO MAIN MENU";
     cout << "\n\n\n\tPLEASE ENTER YOUR CHOICE(1-11)";
+    Color(7);
     cin >> ch2;
     switch (ch2)
     {
@@ -651,7 +657,7 @@ void adminmenu()
     case 3:
         char num[studentAdmissionNumberLength];
         system("cls");
-        cout << "\n\n\t Please enter admission no.";
+        cout << "\n\n\tPLEASE ENTER ADMISSION NUMBER : ";
         cin >> num;
         displaysps(num);
         break;
@@ -671,7 +677,7 @@ void adminmenu()
     {
         char num[bookNumberLength];
         system("cls");
-        cout << "\n\n\tPlease enter book no.";
+        cout << "\n\n\tPLEASE ENTER BOOK NUMBER : ";
         cin >> num;
         displayspb(num);
         break;
@@ -685,7 +691,7 @@ void adminmenu()
     case 11:
         return;
     default:
-        cout << "Invalid choice";
+        cout << "INVALID CHOICE.";
     }
     adminmenu();
 }
@@ -698,12 +704,14 @@ int main()
     do
     {
         system("cls");
+        Color(11);
         cout << "\n\n\n\t MAIN MENU";
         cout << "\n\n\n\t1 BOOK ISSUE";
         cout << "\n\n\n\t2 BOOK DEPOSIT";
         cout << "\n\n\n\t3 ADMINISTRATOR MENU";
         cout << "\n\n\n\t4 EXIT";
         cout << "\n\n\n\t PLEASE SELECT YOUR OPTION(1-4)";
+        Color(7);
         ch = getche();
         switch (ch)
         {
